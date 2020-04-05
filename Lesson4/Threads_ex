@@ -1,0 +1,37 @@
+from concurrent.futures import ThreadPoolExecutor
+import requests
+import random
+import time
+def sleeping():
+    r = random.randint(0, 5)
+    time.sleep(5)
+    print(f'sleep for {r}')
+    return r
+
+with ThreadPoolExecutor(max_workers=10) as executor:
+    print(executor)
+    results = []
+    for i in range(10):
+        results = executor.map(sleeping)
+
+    print(results)
+
+
+def math1(thread_num):
+
+    for i in range(10000):
+        print(f'WORKING FROM THREAD {thread_num}')
+
+
+
+from threading import Thread
+
+t = Thread(target=math1, args=(1, ))
+t2 = Thread(target=math1, args=(2, ))
+
+t.start()
+t2.start()
+
+t.join()
+t.join()
+© 2020 GitHub, Inc.
