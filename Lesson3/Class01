@@ -1,0 +1,18 @@
+def simple_decorator(*args):
+    def actual_simple_decorator(func):
+        def wrapper():
+            print(args)
+            time1 = time.time()
+            result = func()
+            time2 = time.time() - time1
+            print('execution time = ', time2)
+            return result
+        return wrapper
+    return actual_simple_decorator
+@simple_decorator(100)
+def hi():
+    for i in range (100):
+        print("hi")
+    return False
+
+a = hi()
