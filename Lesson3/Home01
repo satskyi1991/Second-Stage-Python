@@ -1,0 +1,94 @@
+
+
+class Stack:
+    def __init__(self):
+        self.items = []
+
+    def __is_empty__(self):
+        return self.items == []
+
+    def __push__(self, item):
+        self.items.append(item)
+
+    def __pop__(self):
+        return self.items.pop()
+
+    def __peek__(self):
+        return self.items[len(self.items)-1]
+
+    def __size__(self):
+        return len(self.items)
+
+class Queue:
+    def __init__(self):
+        self.items = []
+
+    def __is_empty__(self):
+        return self.items == []
+
+    def __enqueue__(self, item):
+        self.items.insert(0,item)
+
+    def __dequeue__(self):
+        return self.items.pop()
+
+    def __size__(self):
+        return len(self.items)
+
+q = Queue()
+q.__enqueue__('hello')
+q.__enqueue__('dog')
+q.__enqueue__(3)
+print(q.__dequeue__())
+print(q.__dequeue__())
+print(q.__dequeue__())
+
+
+s=Stack()
+s.__push__(4)
+s.__push__('dog')
+s.__push__(8.4)
+print(s.__pop__())
+print(s.__pop__())
+print(s.__pop__())
+
+class Complex:
+    def __init__(self, real, imag):
+        self._real = real
+        self._imag = imag
+
+    def __set__(self, real, imag):
+        self._real = real
+        self._imag = imag
+
+    def __get__(self):
+        return self._real, self._imag
+
+    def __add__(self, other):
+        self._real = self._real + other._real
+        self._imag = self._imag + other._imag
+
+    def __sub__(self, other):
+        self._real = self._real - other._real
+        self._imag = self._imag - other._imag
+
+    def __mul__(self, other):
+        self._real = self._real * other._real - self._imag * other._imag
+        self._imag = self._imag * other._real + self._real * other._imag
+
+    def __abs__(self):
+        return (self._real ** 2 + self._imag ** 2) ** 0.5
+
+comp1 = Complex(-1,2)
+comp2 = Complex(2,3)
+comp1.__set__(2,3)
+print(comp1.__get__())
+comp1.__add__(comp2)
+print(comp1.__get__())
+
+comp1.__mul__(comp2)
+print(comp1.__get__())
+
+comp1.__abs__()
+print(comp1.__abs__())
+
