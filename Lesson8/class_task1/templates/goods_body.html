@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% for good in goods %}
+        <h4>
+            <a href="{{good.category_id}}/{{good.id}}">
+                {{good.name}}
+                </a>
+                {{good.price}}
+                </a>
+                {{good.availability}}
+            </a>
+        </h4>
+        <br>
+    {% endfor %}
+
+{% endblock %}
